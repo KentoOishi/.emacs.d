@@ -1,4 +1,4 @@
 # .emacs.d
 
 ## emacs-trr
-git remote add origin git@github.com:KentoOishi/.emacs.d.git
+$ git clone https://github.com/kawabata/emacs-trr.git ~/.emacs-trr
