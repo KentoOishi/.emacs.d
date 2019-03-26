@@ -1,0 +1,14 @@
+auto-save-list/
+elpa/
+emacs-trr/
+games/
+packages/
+snippets/
+template/
+url/
+ac-comphist.dat
+.python-environments
+
+my_settings.el
+network-security.data
+readme.txt
