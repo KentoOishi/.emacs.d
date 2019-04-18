@@ -67,6 +67,10 @@
 ;; space tab の可視化
 ;;(global-whitespace-mode 1)
 
+;; 複数ウィンドウを禁止する
+(setq ns-pop-up-frames nil)
+
+
 ;; スクロール行数
 (setq scroll-conservatively 1)
 (setq scroll-margin 10)
@@ -135,19 +139,30 @@
 ;(golden-ratio-mode 1)
 ;(add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*")
 
-;; yatex
-(require 'yatex)
-(add-to-list 'auto-mode-alist '("\\.tex\\'". yatex))
-(setq tex-command "platex") ;;環境に合わせて変える
-(setq bibtex-command "pbibtex") ;;環境に合わせて変える
-;; reftex-mode
-(add-hook 'yatex-mode-hook
-          #'(lambda ()
-              (reftex-mode 1)
-              (define-key reftex-mode-map
-                (concat YaTeX-prefix ">") 'YaTeX-comment-region)
-              (define-key reftex-mode-map
-                (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
+; ----------------------- YaTeX ------------------------------
+(setq auto-mode-alist
+   (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+(setq tex-command "pdfplatex")
+(setq dvi2-command "open -a Preview")
+(defvar YaTeX-dvi2-command-ext-alist
+ '(("Preview\\|Skim" . ".pdf")
+   ("gv" . ".ps")
+   ("pxdvi\\|xdvi\\|dvipdfmx" . ".dvi")
+  )
+)
+;(setq tex-pdfview-command "open -a Preview")
+
+(setq YaTeX-kanji-code 4)
+
+(provide 'yatex-startup)
+
+;(add-hook 'yatex-mode-hook '(lambda ()
+;                              (electric-indent-local-mode -1)))
+;-------------------------------------------------------------
+
 
 ;; web-mode for html, js etc
 (require 'web-mode)
