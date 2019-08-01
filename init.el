@@ -140,25 +140,26 @@
 ;(add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*")
 
 ; ----------------------- YaTeX ------------------------------
-(setq auto-mode-alist
-   (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+;(setq auto-mode-alist
+;   (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+;(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+(setq tex-command "platex")
+(setq bibtex-command "pbibtex")
+;(setq dvi2-command "open -a Preview")
+;(setq YaTeX-prefix "\C-t")
+;(defvar YaTeX-dvi2-command-ext-alist
+; '(("Preview\\|Skim" . ".pdf")
+;   ("gv" . ".ps")
+;   ("pxdvi\\|xdvi\\|dvipdfmx" . ".dvi")
+;  )
+; )
+;(setq latex-run-command "\C-c \C-c")
+;;(setq tex-pdfview-command "open -a Preview");
+;
+;(setq YaTeX-kanji-code 4);;
 
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-
-(setq tex-command "pdfplatex")
-(setq dvi2-command "open -a Preview")
-(defvar YaTeX-dvi2-command-ext-alist
- '(("Preview\\|Skim" . ".pdf")
-   ("gv" . ".ps")
-   ("pxdvi\\|xdvi\\|dvipdfmx" . ".dvi")
-  )
-)
-;(setq tex-pdfview-command "open -a Preview")
-
-(setq YaTeX-kanji-code 4)
-
-(provide 'yatex-startup)
-
+;(provide 'yatex-startup)
+;
 ;(add-hook 'yatex-mode-hook '(lambda ()
 ;                              (electric-indent-local-mode -1)))
 ;-------------------------------------------------------------
@@ -315,6 +316,11 @@
 (add-hook 'find-file-not-found-hooks 'auto-insert)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq yatex-settings "~/.emacs.d/tex.el")
+(load yatex-settings)
+
+(setq vrml-settings "~/.emacs.d/packages/vrml-mode.el")
+(load vrml-settings)
 
 (setq language-settings "~/.emacs.d/language-settings.el")
 (load language-settings)
@@ -336,3 +342,5 @@
 
 ;; *scratch* の初期メッセージ
 (setq initial-scratch-message "")
+
+
